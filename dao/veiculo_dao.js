@@ -53,7 +53,7 @@ class VeiculoDao {
         }
       })
     })
-  }
+  }  
 }
 
 module.exports = VeiculoDao  

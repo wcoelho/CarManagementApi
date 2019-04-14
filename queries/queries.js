@@ -4,7 +4,7 @@ class Queries {
       this.dao = dao
     }
   
-    // Cria a tabela de veículos
+    // Cria a tabela de veículos, caso não exista
     createTable() {
       const sql =
         `CREATE TABLE IF NOT EXISTS veiculos(
