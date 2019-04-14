@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Limpar variáveis",
+			"name": "Limpa variáveis",
 			"event": [
 				{
 					"listen": "test",
@@ -39,7 +39,7 @@
 			"response": []
 		},
 		{
-			"name": "Criar Veículo",
+			"name": "Cria Veículo",
 			"event": [
 				{
 					"listen": "test",
@@ -70,7 +70,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"placa\": \"HBU-0403\",\n    \"chassi\": \"6MMTW8D425T006276\",\n    \"renavam\": \"623456789\",\n    \"modelo\": \"Santana\",\n    \"marca\": \"Volkswagen\",\n    \"ano\": \"2000\"\n}"
+					"raw": "{\n\t\"placa\": \"HBU-0403\",\n    \"chassi\": \"6MMTW8D425T006276\",\n    \"renavam\": \"623456789\",\n    \"modelo\": \"Santana\",\n    \"marca\": \"Volkswagen\",\n    \"ano\": 2000\n}"
 				},
 				"url": {
 					"raw": "http://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/veiculos",
@@ -89,7 +89,7 @@
 			"response": []
 		},
 		{
-			"name": "Recuperar Veículos",
+			"name": "Recupera Lista de Veículos",
 			"event": [
 				{
 					"listen": "test",
@@ -131,7 +131,7 @@
 			"response": []
 		},
 		{
-			"name": "Recuperar Veículo Específico",
+			"name": "Recupera Veículo Específico",
 			"event": [
 				{
 					"listen": "test",
@@ -174,7 +174,7 @@
 			"response": []
 		},
 		{
-			"name": "Recuperar Veículo com Id inválido - retorna \"400 Not Found\"",
+			"name": "Recupera Veículo com Id inválido - retorna \"400 Not Found\"",
 			"event": [
 				{
 					"listen": "test",
@@ -224,8 +224,22 @@
 					"script": {
 						"id": "3208802e-7ab4-412e-9690-c849414adfcc",
 						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var placa = jsonData.placa;",
+							"var chassi = jsonData.chassi;",
+							"var renavam = jsonData.renavam;",
+							"var modelo = jsonData.modelo;",
+							"var marca = jsonData.marca;",
+							"var ano = jsonData.ano;",
+							"",
 							"pm.test(\"Dados do Veículo atualizados com sucesso!\", function () {",
 							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"    pm.expect(placa).to.eql(\"HBU-0402\");",
+							"    pm.expect(chassi).to.eql(\"6MMTW8D425T006272\");",
+							"    pm.expect(renavam).to.eql(\"623456782\");",
+							"    pm.expect(modelo).to.eql(\"Santana SD\");",
+							"    pm.expect(marca).to.eql(\"Volkswagen\");",
+							"    pm.expect(ano).to.eql(2002);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -244,7 +258,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": {{id}},\n\t\"placa\": \"HBU-0402\",\n    \"chassi\": \"6MMTW8D425T006272\",\n    \"renavam\": \"623456782\",\n    \"modelo\": \"Santana SD\",\n    \"marca\": \"Volkswagen\",\n    \"ano\": \"2002\"\n}"
+					"raw": "{\n\t\"id\": {{id}},\n\t\"placa\": \"HBU-0402\",\n    \"chassi\": \"6MMTW8D425T006272\",\n    \"renavam\": \"623456782\",\n    \"modelo\": \"Santana SD\",\n    \"marca\": \"Volkswagen\",\n    \"ano\": 2002\n}"
 				},
 				"url": {
 					"raw": "http://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/veiculos/{{id}}",
@@ -358,7 +372,7 @@
 			"response": []
 		},
 		{
-			"name": "Apagar Veículo",
+			"name": "Apaga Veículo",
 			"event": [
 				{
 					"listen": "test",
@@ -398,7 +412,7 @@
 			"response": []
 		},
 		{
-			"name": "Apagar Veículo com id inexistente - retorna sucesso",
+			"name": "Apaga Veículo com id inexistente - retorna sucesso",
 			"event": [
 				{
 					"listen": "test",
