@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 const dao = new VeiculoDAO('./db/database.sqlite3')
 
 // Inicializando as rotas com o app e o dao
-require('./app/routes')(app, dao);
+require('./routes')(app, dao);
 
 // Inicializa a conexão na classe de queries
 const queries = new Queries(dao)
@@ -29,7 +29,7 @@ queries.createTable()
 // Sobe a aplicação
 const server = app.listen(port, () => {
   console.log(`Aplicação rodando na porta ${port}`);
-  });
+});
 
 // Encerrando processos e fechando o banco de dados quando o servidor é derrubado
 [`SIGINT`, `SIGUSR1`, `SIGUSR2`, `uncaughtException`, `SIGTERM`].forEach((eventType) => {

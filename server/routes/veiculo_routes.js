@@ -1,4 +1,4 @@
-const Queries = require('../../queries/queries') 
+const Queries = require('../queries/queries') 
 const cors = require('cors');
 
 let queries;
@@ -81,7 +81,7 @@ function getAll(res) {
       if (veiculos.length == 0) {
         res.json({erro: 'Nenhum veículo encontrado'});
       } else {
-        console.log(`Lista de veículos recuperada do banco de dados`);
+        console.debug(`Lista de veículos recuperada do banco de dados`);
         res.send(veiculos);
       }
     });
