@@ -15,7 +15,7 @@ const port = 8000;
 app.use(bodyParser.json())
 
 // Cria o banco de dados, caso não exista, e recebe a conexão
-const dao = new VeiculoDAO('./db/database.sqlite3')
+const dao = new VeiculoDAO('database.sqlite3')
 
 // Inicializando as rotas com o app e o dao
 require('./routes')(app, dao);
@@ -41,7 +41,6 @@ const server = app.listen(port, () => {
 process.on('exit', function(code) {
     console.info("Aplicação encerrada.");
 });
-
 
 function executeOnExit(signal) {
   console.info(`Sinal ${signal} recebido`);
