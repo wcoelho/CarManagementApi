@@ -20,7 +20,7 @@ chai.use(chaiHttp);
 describe('Testes Unitários da API - Sucesso', function() {
 
     // Testes do 'caminho feliz'
-    before(function(done){
+    beforeEach(function(done){
         // Cria 2 veículos para execução dos testes e armazena o id
         for(var i=0; i<2; i++)
         {
